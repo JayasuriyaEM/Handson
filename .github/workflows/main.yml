@@ -1,33 +1,18 @@
-name: Scheduled Java Task
-
-on:
-  schedule:
-    - cron: '* * * * *'  # Runs every day at midnight UTC
-  # Optional: You can also trigger it on push or pull request to test
-  push:
-    branches:
-      - main
-
+name: GitHub Actions Demo
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
 jobs:
-  build:
+  Explore-GitHub-Actions:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: Install Java 22 (Manual Setup)
-      run: |
-        wget https://github.com/adoptium/temurin22-binaries/releases/download/jdk-22+35/OpenJDK22U-jdk_x64_linux_hotspot_22_35.tar.gz
-        tar -xvzf OpenJDK22U-jdk_x64_linux_hotspot_22_35.tar.gz
-        sudo mv jdk-22 /opt/java
-        sudo update-alternatives --install /usr/bin/java java /opt/java/jdk-22/bin/java 1
-        sudo update-alternatives --config java
-
-    - name: Check Java version
-      run: java -version
-
-    - name: Build and run Java code
-      run: |
-        ./mvnw clean install # Use Maven (if you use Maven)
-        java -jar target/LinkedIn-0.0.1-SNAPSHOT.jar # Replace with the correct command to run your Java app
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - run: echo "🍏 This job's status is ${{ job.status }}."
