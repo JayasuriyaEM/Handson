@@ -1,0 +1,27 @@
+name: Scheduled Java Task
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Runs every day at midnight UTC
+  # Optional: You can also trigger it on push or pull request to test
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up JDK 11
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+
+    - name: Build and run Java code
+      run: |
+        ./mvnw clean install # Use Maven (if you use Maven)
+        java -jar target/LinkedIn-0.0.1-SNAPSHOT.jar # Replace with the correct command to run your Java app
