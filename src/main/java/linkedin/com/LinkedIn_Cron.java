@@ -20,7 +20,9 @@ public class LinkedIn_Cron {
 //		driver.findElement(By.id("password")).sendKeys("Jaya0411@ln");
 //		driver.findElement(By.xpath("//button[@type = 'submit']")).click();
 //		Thread.sleep(1000);
-		driver.get("https://www.amazon.com/");
+//		driver.get("https://www.flipkart.com/");
+		System.out.println("nandha");
+		
 	}
 	
 }
